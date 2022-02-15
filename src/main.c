@@ -3,6 +3,7 @@
 #include "sqlite3.h"
 #include "database/database.h"
 #include "ui/ui.h"
+#include "models/models.h"
 
 // pointers available everywhere
 SDL_Window* window = NULL;
