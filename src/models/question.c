@@ -5,4 +5,6 @@ struct question {
     char text[255];
 
     /* add reaction */
+    // entity reaction id
+    // entity reaction text
 };
