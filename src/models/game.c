@@ -2,8 +2,7 @@
 
 struct game {
     int id;
-    int player_id;
-    int chapter_id;
+    struct player *player;
     struct chapter *chapter;
     int finished;
     char position[255];

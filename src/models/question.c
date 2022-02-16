@@ -1,6 +1,8 @@
-#include "models.h"
-
 struct question {
     int id;
-    struct chapter *chapter;
+    int group;
+    int points; // 0 nothing; 1 good response but not the best; 2 best response; 3 bad response;
+    char text[255];
+
+    /* add reaction */
 };
