@@ -1,7 +1,7 @@
 #include <SDL2/SDL.h>
 
 void ui_init() {
-    if (SDL_Init( SDL_INIT_VIDEO | SDL_INIT_AUDIO) != 0) {
+    if (SDL_Init( SDL_INIT_EVERYTHING) != 0) {
         fprintf(stderr, "Error on sdl : %s", SDL_GetError());
         exit(1);
     }

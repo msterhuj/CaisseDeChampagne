@@ -5,7 +5,6 @@
 #include "ui/ui.h"
 #include "models/models.h"
 
-// pointers available everywhere
 SDL_Window* window = NULL;
 SDL_Renderer* renderer = NULL;
 sqlite3* db = NULL;

@@ -25,13 +25,6 @@ endif (SDL2_FOUND)
 
 include_directories(${SDL2_INCLUDE_DIRS} ${SQLITE3_INCLUDE_DIRS})
 
-add_executable(${PROJECT_NAME}
-        src/main.c
-        src/database/database.h
-        src/database/database.c
-        src/ui/ui.h
-        src/ui/ui.c
-        src/ui/eventListeners.c
-)
+add_executable(${PROJECT_NAME} src/main.c)
 
 target_link_libraries(${PROJECT_NAME} ${SDL2_LIBRARIES} ${SQLITE3_LIBRARIES} -lmingw32 -lSDL2main -lSDL2 -lsqlite3)

@@ -4,7 +4,6 @@
 #include "chapter.c"
 #include "entity.c"
 #include "game.c"
-#include "player.c"
 #include "question.c"
 #include "talk.c"
 

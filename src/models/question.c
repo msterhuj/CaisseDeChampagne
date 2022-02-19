@@ -1,10 +1,10 @@
 struct question {
     int id;
-    int group;
-    int points; // 0 nothing; 1 good response but not the best; 2 best response; 3 bad response;
+    int group_id;
+    int points; // 0 good response but not the best; 1 best response; 2 bad response;
     char text[255];
 
     /* add reaction */
-    // entity reaction id
-    // entity reaction text
+    Entity *entity;
+    char reaction[255];
 };
