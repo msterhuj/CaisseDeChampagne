@@ -2,9 +2,10 @@ struct question {
     int id;
     struct talk *talk; // many to one talk
     int points; // 0 good response but not the best; 1 best response; 2 bad response;
-    char text[255];
+    char content[255];
 
     /* add reaction */
-    struct Entity *entity;
-    char reaction[255];
+    //
+    char sprite[255]; // name of sprite (list of sprites defined in config.yml)
+    char reply[255];
 };

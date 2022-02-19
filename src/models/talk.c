@@ -1,8 +1,8 @@
 struct talk {
     int id;
     struct chapter *chapter;
-    struct entity *entity; // The entity that is talking
-    char text[255];
+    char sprite[255]; // name of sprite (list of sprites defined in config.yml)
+    char content[255];
 
     // question id one to many
 };
