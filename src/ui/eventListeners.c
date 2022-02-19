@@ -6,9 +6,6 @@ void ui_listen_for_events() {
     while (SDL_WaitEvent(&event)) {
         if (event.type == SDL_WINDOWEVENT) {
             switch (event.window.event) {
-                case SDL_WINDOWEVENT_RESIZED:
-                    puts("Oulala le resize");
-                    break;
                 case SDL_WINDOWEVENT_CLOSE:
                     puts("Close app");
                     return;
