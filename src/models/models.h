@@ -1,10 +1,10 @@
-#ifdef CAISSEDECHAMPAGNE_MODELS_H
+#ifndef CAISSEDECHAMPAGNE_MODELS_H
 #define CAISSEDECHAMPAGNE_MODELS_H
 
+#include <sqlite3.h>
 #include "chapter.c"
-#include "entity.c"
 #include "game.c"
-#include "question.c"
 #include "talk.c"
+#include "question.c"
 
 #endif //CAISSEDECHAMPAGNE_MODELS_H
