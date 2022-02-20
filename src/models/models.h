@@ -2,6 +2,9 @@
 #define CAISSEDECHAMPAGNE_MODELS_H
 
 #include <sqlite3.h>
+
+#include "prototypes.h"
+
 #include "chapter.c"
 #include "game.c"
 #include "talk.c"
