@@ -1,10 +1,8 @@
-#include <stdio.h>
 #include <SDL2/SDL.h>
-#include "sqlite3.h"
 #include "database/database.h"
-#include "ui/ui.h"
 #include "models/models.h"
 #include "models/prototypes.c"
+#include "ui/ui.h"
 
 SDL_Window* window = NULL;
 SDL_Renderer* renderer = NULL;

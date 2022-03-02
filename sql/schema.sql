@@ -1,48 +1,29 @@
-create table chapter
-(
-    id   integer,
-    name integer
-        constraint chapter_pk
-            primary key autoincrement
+create table chapter (
+    id integer constraint chapter_pk primary key autoincrement,
+    name varchar(50) not null,
+    finished integer default 0 not null
+);
+create unique index chapter_name_index on chapter (name);
+
+create table game (
+    id integer constraint game_pk primary key autoincrement,
+    chapter_id integer no t null references chapter,
+    score integer not null
 );
 
-create table choices
-(
-    id         integer not null
-        constraint choices_pk
-            primary key autoincrement,
-    type       varchar(1),
-    block      integer,
-    content    text    not null,
-    ans_1      varchar(250),
-    ans_2      varchar(250),
-    ans_3      varchar(250),
-    ans_4      varchar(250),
-    chapter_id integer
-        constraint choices_chapter_id_fk
-            references chapter (id)
-            on update cascade on delete cascade
+create table talk (
+    id integer constraint talk_pk primary key autoincrement,
+    chapter_id integer not null references chapter,
+    sprite varchar(50),
+    content varchar(255) not null
 );
 
-create table player
-(
-    id   INTEGER not null
-        primary key autoincrement,
-    name VARCHAR(50) default 'Rick' not null
+create table question (
+    id integer constraint question_pk primary key autoincrement,
+    talk_id integer not null references talk,
+    points  integer not null,
+    content varchar(255) not null,
+    sprite  varchar(255),
+    reply   varchar(255) not null
 );
 
-create table games
-(
-    id         integer      not null
-        constraint games_pk
-            primary key autoincrement,
-    player_id  INTEGER      not null
-        references player
-            on update cascade on delete cascade,
-    finished   INTEGER,
-    position   VARCHAR(255) not null,
-    chapter_id integer      not null
-        constraint games_chapter_id_fk
-            references chapter (id)
-            on update cascade on delete cascade
-);
