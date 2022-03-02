@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <string.h>
 #include "sqlite3.h"
 
 /**
@@ -37,9 +38,9 @@ void delete_database(char *db_name) {
 int exec_sql_file(sqlite3 *db, char *sql_file) {
     char *zErrMsg = 0;
     int rc;
-    FILE *fp;
     char *sql;
-    size_t size;
+    char *sql_tmp;
+    FILE *fp;
 
     fp = fopen(sql_file, "r");
     if (fp == NULL) {
@@ -47,32 +48,26 @@ int exec_sql_file(sqlite3 *db, char *sql_file) {
         return -1;
     }
 
-    fseek(fp, 0, SEEK_END);
-    size = ftell(fp);
-    rewind(fp);
+    sql = (char *) malloc(sizeof(char) * 1024);
+    sql_tmp = (char *) malloc(sizeof(char) * 1024);
+    while (fgets(sql_tmp, 1024, fp) != NULL) {
+        strcat(sql, sql_tmp);
 
-    sql = malloc(size + 1);
-    if (sql == NULL) {
-        fprintf(stderr, "Can't allocate memory\n");
-        return -1;
+        if (strstr(sql, ";")) { // todo fix error of text on decoding
+            rc = sqlite3_exec(db, sql, NULL, 0, &zErrMsg);
+            if (rc != SQLITE_OK) {
+                fprintf(stderr, "SQL error: %s\n", zErrMsg);
+                sqlite3_free(zErrMsg);
+                return -1;
+            }
+            sql[0] = '\0';
+        }
     }
 
-    if (fread(sql, 1, size, fp) != size) {
-        fprintf(stderr, "Can't read file: %s\n", sql_file);
-        return -1;
-    }
-
-    sql[size] = '\0';
-
-    rc = sqlite3_exec(db, sql, NULL, 0, &zErrMsg);
-    if (rc != SQLITE_OK) {
-        fprintf(stderr, "SQL error: %s\n", zErrMsg);
-        sqlite3_free(zErrMsg);
-        return -1;
-    }
 
     fclose(fp);
     free(sql);
+    free(sql_tmp);
 
     return 0;
 }
