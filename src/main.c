@@ -1,10 +1,13 @@
 #include <SDL2/SDL.h>
 #include "database/database.h"
 #include "models/models.h"
+#include "models/prototypes.c"
 #include "ui/ui.h"
 
 SDL_Window* window = NULL;
 SDL_Renderer* renderer = NULL;
+SDL_Texture *briques_texture = NULL;
+SDL_Texture *qblocks_texture = NULL;
 sqlite3* db = NULL;
 
 int main(int argc, char** argv) {
@@ -19,18 +22,16 @@ int main(int argc, char** argv) {
 
     SDL_RenderClear(renderer);
 
-    //ici tu draw
-    SDL_Rect rect = {
-            .x = 0,
-            .y = 0,
-            .w = 100,
-            .h = 50
-    };
-    SDL_RenderDrawRect(renderer, &rect);
+    // ========================================= START draw ========================================
+
+    ui_create_question_area(renderer, briques_texture);
+    int nb = 2;
+    ui_create_qbox(renderer, qblocks_texture, nb);
 
 
-    SDL_RenderPresent(renderer);
 
+    // ========================================= FIN draw ========================================
     ui_listen_for_events();
-    ui_destroy(window, renderer);
+    ui_destroy(window, renderer, briques_texture, qblocks_texture);
+    return EXIT_SUCCESS;
 }
