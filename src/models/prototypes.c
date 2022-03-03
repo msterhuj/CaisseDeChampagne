@@ -4,10 +4,15 @@
 // ------- UI -------
 void ui_init();
 SDL_Window *ui_create_window();
-SDL_Renderer *ui_create_renderer(SDL_Window *window);
-void ui_create_question_area(SDL_Renderer *renderer, SDL_Texture *briques_texture);
-void ui_create_qbox(SDL_Renderer *renderer, SDL_Texture *qblocks_texture, int nb);
+SDL_Renderer *ui_create_renderer();
+void ui_create_scenery(int scenery);
+void ui_create_question_area();
+void ui_create_qbox(int nb);
 void ui_listen_for_events();
 void ui_destroy(SDL_Window *window, SDL_Renderer *renderer, SDL_Texture *texture, SDL_Texture *qblocks_texture);
 
 
+// ------- STRING -------
+void write_qtext(int nb_qbox, int box, char* content);
+void ui_create_txt_area(char* dialog);
+void

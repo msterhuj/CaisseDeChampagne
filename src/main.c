@@ -2,13 +2,14 @@
 #include "database/database.h"
 #include "models/models.h"
 #include "models/prototypes.c"
-#include "ui/ui.h"
+#include <SDL2/SDL_ttf.h>
 
 SDL_Window* window = NULL;
 SDL_Renderer* renderer = NULL;
 SDL_Texture *briques_texture = NULL;
 SDL_Texture *qblocks_texture = NULL;
 sqlite3* db = NULL;
+#include "ui/ui.h"
 
 int main(int argc, char** argv) {
 
@@ -28,6 +29,16 @@ int main(int argc, char** argv) {
     int nb = 2;
     ui_create_qbox(renderer, qblocks_texture, nb);
 
+    int nb = 1;
+    int nb_qbox = nb;
+    ui_create_qbox(nb);
+
+    int box = 0;
+    char string[] = "123456789 123456789 123456789 123456789 123456789 1234";
+    write_qtext( nb_qbox, box, string );
+
+    char dialog[] = "123456789 123456789 123456789 123456789 123456789 123456789 1";
+    ui_create_txt_area( dialog );
 
 
     // ========================================= FIN draw ========================================
