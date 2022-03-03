@@ -9,10 +9,9 @@ void ui_create_scenery(int scenery);
 void ui_create_question_area();
 void ui_create_qbox(int nb);
 void ui_listen_for_events();
-void ui_destroy(SDL_Window *window, SDL_Renderer *renderer, SDL_Texture *texture, SDL_Texture *qblocks_texture);
+void ui_destroy();
 
 
 // ------- STRING -------
 void write_qtext(int nb_qbox, int box, char* content);
 void ui_create_txt_area(char* dialog);
-void

@@ -27,9 +27,8 @@ int main(int argc, char** argv) {
 
     ui_create_question_area(renderer, briques_texture);
     int nb = 2;
-    ui_create_qbox(renderer, qblocks_texture, nb);
+    ui_create_qbox(nb);
 
-    int nb = 1;
     int nb_qbox = nb;
     ui_create_qbox(nb);
 

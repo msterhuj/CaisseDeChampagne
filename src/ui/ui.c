@@ -100,7 +100,7 @@ void ui_create_question_area(SDL_Renderer *renderer, SDL_Texture *briques_textur
 
 
 // --- CREATE QUESTION BLOCKS ---
-void ui_create_qbox(SDL_Renderer *renderer, SDL_Texture *qblocks_texture, int nb){
+void ui_create_qbox(int nb){
     // define the blocks
     int x_array[4];
     int y_array[4];
