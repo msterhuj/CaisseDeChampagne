@@ -18,6 +18,7 @@ int main(int argc, char** argv) {
 
     // Init la lib
     ui_init();
+    txt_init();
     window = ui_create_window();
     renderer = ui_create_renderer(window);
 

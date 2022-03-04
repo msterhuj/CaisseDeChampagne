@@ -3,6 +3,7 @@
 
 // ------- UI -------
 void ui_init();
+void txt_init();
 SDL_Window *ui_create_window();
 SDL_Renderer *ui_create_renderer();
 void ui_create_scenery(int scenery);

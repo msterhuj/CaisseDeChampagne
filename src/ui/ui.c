@@ -46,6 +46,12 @@ void ui_init() {
     }
 }
 
+void txt_init(){
+    if(TTF_Init()<0){
+        ui_destroy();
+    }
+}
+
 
 // create a new window and return its pointer
 SDL_Window *ui_create_window() {
