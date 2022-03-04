@@ -25,6 +25,7 @@ int main(int argc, char** argv) {
     SDL_RenderClear(renderer);
 
     // ========================================= START draw ========================================
+    ui_create_scenery( 0 );
 
     ui_create_question_area(renderer, briques_texture);
     int nb = 2;

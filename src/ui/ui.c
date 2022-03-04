@@ -66,7 +66,7 @@ SDL_Window *ui_create_window() {
 
 
 // create a new renderer and return its pointer
-SDL_Renderer *ui_create_renderer(SDL_Window *window) {
+SDL_Renderer *ui_create_renderer() {
     SDL_Renderer *renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
     if (renderer == NULL) {
         fprintf(stderr, "Failed to create renderer: %s\n", SDL_GetError());
@@ -76,9 +76,64 @@ SDL_Renderer *ui_create_renderer(SDL_Window *window) {
     return renderer;
 }
 
+// --- CREATE SCENERY ---
+void ui_create_scenery( int scenery ){
+    /* scenery int serve to define the scenery to display :
+        0 and default = natural scenery
+        1 = peach's castle
+        2 = peach's castle with inverted colors *chocking effect*
+        3 = bowser's castle
+        to add a scenery : place the picture with .bmp format into texture folder
+     */
+
+    // define area
+    SDL_Rect scenery_area = {
+            .x = 0,
+            .y = 0,
+            .w = 512,
+            .h = 344
+    };
+
+    SDL_Surface *tmp = NULL;
+
+    // select the background
+    switch (scenery) {
+        default:
+        case 0:
+            tmp = SDL_LoadBMP( "../src/scenery/default.bmp" );
+            break;
+
+        case 1:
+            tmp = SDL_LoadBMP( "../src/scenery/peach_castle.bmp" );
+            break;
+
+        case 2:
+            tmp = SDL_LoadBMP( "../src/scenery/DARK_peach_castle.bmp" );
+            break;
+
+        case 3:
+            tmp = SDL_LoadBMP( "../src/scenery/bowser_castle.bmp" );
+            break;
+    }
+
+    if( tmp == NULL ){
+        ui_destroy();
+    }
+    scenery_texture = SDL_CreateTextureFromSurface( renderer, tmp );
+
+    SDL_FreeSurface( tmp );
+    if( scenery_texture == NULL ){
+        ui_destroy();
+    }
+    SDL_RenderCopy( renderer, scenery_texture, NULL, &scenery_area );
+
+    SDL_RenderPresent(renderer);
+
+}
+
 
 // --- CREATE QUESTION AREA ---
-void ui_create_question_area(SDL_Renderer *renderer, SDL_Texture *briques_texture){
+void ui_create_question_area(){
     // define area
     SDL_Rect question_area = {
             .x = 0,
@@ -329,5 +384,4 @@ void ui_create_txt_area(char* dialog){
     SDL_DestroyTexture( texture );
     SDL_FreeSurface( surface );
     TTF_CloseFont( font );
-
 }
