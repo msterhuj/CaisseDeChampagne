@@ -1,30 +1,29 @@
-cmake_minimum_required(VERSION 3.10)
-project(CaisseDeChampagne C)
+cmake_minimum_required(VERSION 3.1.0)
+project(gabin VERSION 0.1.0)
 
-set(CMAKE_C_STANDARD 17)
-set(CPACK_PROJECT_NAME ${PROJECT_NAME})
-set(CPACK_PROJECT_VERSION ${PROJECT_VERSION})
+set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_SOURCE_DIR}/cmake/")
+set(CMAKE_C_STANDARD 11)
+set(CMAKE_C_STANDARD_REQUIRED true)
 
-include(CPack)
+
 include(CTest)
 enable_testing()
 
-find_package (SQLite3 REQUIRED)
-if (SQLITE3_FOUND)
-    message(STATUS "SQLite3 found")
-else(SQLITE3_FOUND)
-    message(FATAL_ERROR "SQLite3 is required")
-endif (SQLITE3_FOUND)
-
 find_package(SDL2 REQUIRED)
+find_package(SDL2_TTF REQUIRED)
+
+find_package(sqlite3 REQUIRED)
+
 if (SDL2_FOUND)
-    message(STATUS "SDL2 found")
-else(SDL2_FOUND)
-    message(FATAL_ERROR "SDL2 is required")
-endif (SDL2_FOUND)
+    message("sdl ok")
+endif()
 
-include_directories(${SDL2_INCLUDE_DIRS} ${SQLITE3_INCLUDE_DIRS})
+include_directories(${SDL2_IMAGE_INCLUDE_DIRS} ${SDL2_TTF_INCLUDE_DIRS})
 
-add_executable(${PROJECT_NAME} src/main.c src/models/prototypes.c)
+add_executable(gabin src/main.c)
 
-target_link_libraries(${PROJECT_NAME} ${SDL2_LIBRARIES} ${SQLITE3_LIBRARIES} -lmingw32 -lSDL2main -lSDL2 -lsqlite3)
+target_link_libraries(gabin SQLite::SQLite3 ${SDL2_LIBRARY} ${SDL2_TTF_LIBRARIES})
+
+set(CPACK_PROJECT_NAME ${PROJECT_NAME})
+set(CPACK_PROJECT_VERSION ${PROJECT_VERSION})
+include(CPack)

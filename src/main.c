@@ -1,3 +1,4 @@
+
 #include <SDL2/SDL.h>
 #include "database/database.h"
 #include "models/models.h"
@@ -6,6 +7,7 @@
 
 SDL_Window* window = NULL;
 SDL_Renderer* renderer = NULL;
+SDL_Texture *scenery_texture = NULL;
 SDL_Texture *briques_texture = NULL;
 SDL_Texture *qblocks_texture = NULL;
 sqlite3* db = NULL;
